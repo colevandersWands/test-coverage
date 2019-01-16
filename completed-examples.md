@@ -21,17 +21,17 @@ a = temp;               coverlog[3]++; path.push(3);
 
 actual = temp;
 ```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0};
+const after = {1:2, 2:2, 3:2};
+```
 test cases:
 ```js
 const test_cases = [
       {name:'1, 2, 3', args:[1,2,3], expected: 2},
       {name:'3, 2, 1', args:[3,2,1], expected: 2},
     ];
-```
-coverlog:
-```js
-const before = {1:0, 2:0, 3:0};
-const after = {1:2, 2:2, 3:2};
 ```
 your notes:
 
@@ -64,6 +64,11 @@ if (b || c) {
   actual = actual + '' + 6;     coverlog[6]++;  path.push(6);
 };
 ```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
+```
 test cases:
 ```js
 const test_cases = [
@@ -76,11 +81,6 @@ const test_cases = [
       {name:'fa, tr, fa', args:[false,true,false], expected:'36'},
       {name:'fa, fa, fa', args:[false,false,false], expected:4},
    ];
-```
-coverlog:
-```js
-const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
-const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
 ```
 your notes:
 
@@ -100,16 +100,16 @@ let c = _case.args[2];
 
 
 ```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
+```
 test cases:
 ```js
 const test_cases = [
 
    ];
-```
-coverlog:
-```js
-const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
-const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
 ```
 your notes:
 
@@ -141,6 +141,11 @@ if ( (a < b) || (b < c) ) {
   actual = 'infinite loop';       coverlog[4]++; path.push(4);
 };
 ```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0, 4:0};
+const after = {1:14, 2:10, 3:6, 4:1};
+```
 test cases:
 ```js
 const test_cases = [
@@ -152,11 +157,6 @@ const test_cases = [
       {name:'10, 8, 4', args:[10,8,4], expected:'infinite loop'},
       {name:'1, 8, 14', args:[1,8,14], expected:[7,8,8]},   
    ];
-```
-coverlog:
-```js
-const before = {1:0, 2:0, 3:0, 4:0};
-const after = {1:14, 2:10, 3:6, 4:1};
 ```
 your notes:
 
