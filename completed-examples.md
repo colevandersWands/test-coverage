@@ -2,7 +2,7 @@
 
 * [no control flow](#no-control-flow)
 * [conditionals](#conditionals)
-* [unreachable conditions](#unreachable-conditions)
+* [unreachable statements](#unreachable-statements)
 * [paths help understand behavior](#conditional-inside-loop-inside-conditional)
 * efficient vs. inefficient coverage
     * [simple example](#efficient-coverage-simple-behavior)
@@ -92,7 +92,7 @@ your notes:
 ---
 
 
-### unreachable conditions
+### unreachable statements
 
 sometimes there are lines of code that can never happen, no matter what.  this is most likely with conditionals but can also happen with loops.  
 keep an eye out for this and try to remove any lines of code that will never happen to keep things clear and simple to read.
