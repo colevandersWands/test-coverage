@@ -1,0 +1,12 @@
+test coverage
+  for conditionals, explicitly write tests for each body
+
+name, args, expected format
+
+'unit test'
+
+forces to phrase a snippet in behavior
+
+continually adding test cases as a means of taking notes & understanding
+
+confidence, secure incremental steps & communication
