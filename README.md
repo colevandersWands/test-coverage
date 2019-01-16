@@ -12,7 +12,6 @@ for each snippet your task is to write:
 
 ### Index
 * [learning objectives](#learning-objectives)
-* [code behavior](#code-behavior)
 * [test coverage](#test-coverage)
 * [testing framework](#testing-framework)
 * [completed examples](./completed-examples.md)
@@ -22,7 +21,6 @@ for each snippet your task is to write:
     * [number 3](#3)
     * [number 4](#4)
     * [number 5](#5)
-    * [number 6](#6)
     * [challenge](#challenge)
 
 ---
@@ -38,30 +36,12 @@ for each snippet your task is to write:
 
 ---
 
-## Code Behavior
-
-A snippet's behavior is what has changed in your program _after_ the snippet has run, implementation is the lines of code that make this change happen.  In the last exercises on tracing, logging & asserting you were exposed to this difference.  The 'expected' variable described the snippet's _behavior_, while the logs and asserts helped to understand the snippet's _implementation_. This exercise will take you deeper into understanding behavior.
-
-Practically speaking you can think of behavior as inputs and outputs.   What values did variables have before a snippet, and what values do they have after the snippet?  To use vocabulary, what are the __arguments__ and what is the __expected__ output:
-```js
-const test_cases = [
-    {name:'meaningful name', args:['the inputs', 'for this snippet'], expected: 'what it should output'},
-    {name:'another test case', args:['different', 'inputs'], expected: 'the expected output'},
-    ...
-  ];
-```
-
-[TOP](#test-coverage)
-
----
-
 ### Test Coverage
 
 Writing passing test cases for existing code is not too hard, you can pretty much do it by trial and error. Writing good test cases is hard.  We will cover this in detail later on, but for now there is one important question to ask:
-> Do my tests test all of the code?
-To help you with _code coverage_ each exercise snippet comes with a coverage log.  It will automatically keep track of how many times each line of code is executed.  You will use this readout to make sure your test cases are complete.
+> Do my tests test all of the code?  
+To help you understand your _test coverage_ each exercise snippet comes with a coverage log & a path log.  The 'coverlog' automatically tracks how many times each line of code is executed, the 'paths' log will track the lines of code each test case reaches in order.  Together these readouts have all the information (along with the source code!) to figure out what test cases are missing.
 
-This will be done using an object called 'coverlog'.  Each exercise comes with an 
 
 
 [TOP](#test-coverage)
@@ -113,7 +93,40 @@ test_coverage_framework: {
 
 ---
 
-### Exercises
+## Exercises
+
+### 1
+
+the snippet:
+```js
+const a = _case.args[0];
+const b = _case.args[1];
+
+if (a || b) {
+   actual = a - b;         coverlog[1]++; path.push(1);
+} else {
+   actual = a + b;         coverlog[2]++; path.push(2);
+};
+if (actual === b) {
+   actual = a;             coverlog[3]++; path.push(3);
+};
+```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0};
+const after = {1:0, 2:0, 3:0};
+```
+test cases:
+```js
+const test_cases = [
+
+  ];
+```
+[TOP](#test-coverage)
+
+---
+
+we can use your studying to create the exercises
 
 
 
@@ -125,7 +138,6 @@ test_coverage_framework: {
 
 
 
-
-
-
-
+___
+___
+### <a href="http://janke-learning.org" target="_blank"><img src="https://user-images.githubusercontent.com/18554853/50098409-22575780-021c-11e9-99e1-962787adaded.png" width="40" height="40"></img> Janke Learning</a>
