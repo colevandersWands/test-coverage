@@ -5,8 +5,8 @@
 * [unreachable conditions](#unreachable-conditions)
 * [paths help understand behavior](#conditional-inside-loop-inside-conditional)
 * efficient vs. inefficient coverage
-		* [simple example](#efficient-coverage-simple-behavior)
-		* [complex example](#efficient-coverage-complex-behavior)
+    * [simple example](#efficient-coverage-simple-behavior)
+    * [complex example](#efficient-coverage-complex-behavior)
 
 ---
 
@@ -193,37 +193,34 @@ Complete & efficient code coverage aren't the only important things to consider 
 the snippet:
 ```js
 let a = _case.args[0];                        
-let b = _case.args[1];   
-let c = _case.args[2];   
+let b = _case.args[1];    
 
-if ( (a < b) || (b < c) ) {
-  while (a !== b && b !== c) {
-    if ( (b - a) > (c - b) ) {
-      a++;                        coverlog[1]++; path.push(1);
-    } else {
-      c--;                        coverlog[2]++; path.push(2);
-    };
-  };
-  actual = [a,b,c];               coverlog[3]++; path.push(3);
+if (a && b) {
+	actual = 1;						coverlog[1]++; path.push(1);
 } else {
-  actual = 'infinite loop';       coverlog[4]++; path.push(4);
+	actual = 2;						coverlog[2]++; path.push(2);
 };
 ```
 coverlog:
 ```js
-const before = {1:0, 2:0, 3:0, 4:0};
-const after = {1:14, 2:10, 3:6, 4:1};
+const before = {1:0, 2:0};
+const efficient = {1:1, 2:1};
+const inefficient = {1:1, 2:3};
 ```
-test cases:
+efficient code coverage:
 ```js
 const test_cases = [
-      {name:'1, 2, 3', args:[1,2,3], expected:[1,2,2]},
-      {name:'1, 2, 4', args:[1,2,4], expected:[1,2,2]},
-      {name:'1, 3, 4', args:[1,3,4], expected:[2,3,3]},
-      {name:'1, 4, 4', args:[1,4,4], expected:[1,4,4]},     
-      {name:'1, 8, 4', args:[1,8,4], expected:[8,8,4]},   
-      {name:'10, 8, 4', args:[10,8,4], expected:'infinite loop'},
-      {name:'1, 8, 14', args:[1,8,14], expected:[7,8,8]},   
+      {name:'tr, tr', args:[true,true], expected:1},
+      {name:'tr, fa', args:[true,false], expected:2},
+   ];
+```
+inefficient code coverage:
+```js
+const test_cases = [
+      {name:'tr, tr', args:[true,true], expected:1},
+      {name:'tr, fa', args:[true,false], expected:2},
+      {name:'fa, tr', args:[false,true], expected:2},
+      {name:'fa, fa', args:[false,false], expected:2},   
    ];
 ```
 your notes:
