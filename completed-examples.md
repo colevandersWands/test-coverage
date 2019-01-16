@@ -3,7 +3,7 @@
 * [variable swap](#variable-swap)
 * [conditionals](#conditionals)
 * [conditional in a loop](#conditional-in-a-loop)
-* [_super_ interesting inspect](#conditional-inside-loop-inside-conditional)
+* [_super_ interesting to study](#conditional-inside-loop-inside-conditional)
 
 ---
 
