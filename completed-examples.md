@@ -1,14 +1,14 @@
 # Completed Examples
 
 * [variable swap](#variable-swap)
-* [if, else if, else](#if-else-if-else)
-* [variable swap](#variable-swap)
+* [conditionals](#conditionals)
+* [conditional in a loop](#conditional-in-a-loop)
+* [loop in a conditional](#loop-in-a-conditional)
+* [conditional inside loop inside conditional](#conditional-inside-loop-inside-conditional)
 
 ---
 
 ### variable swap
-
-This code swaps variable values between a & b using a temporary holder.
 
 the snippet:
 ```js
@@ -35,12 +35,12 @@ const coverlog = {1:1, 2:1, 3:1};
 ```
 your notes:
 
+[TOP](#completed-examples)
+
 ---
 
 
-### if, else if, else
-
-This code swaps variable values between a & b using a temporary holder.
+### conditionals
 
 the snippet:
 ```js
@@ -67,21 +67,68 @@ if (b || c) {
 test cases:
 ```js
 const test_cases = [
-      {name:'path: 1-5-6', args:[true,true,true], expected:'156'},
-      {name:'path: 2-5-6', args:[true,false,true], expected:'256'},
-      {name:'path: 3-5-6', args:[false,true,true], expected:'356'},
-      {name:'path: 4-5-6', args:[false,false,true], expected:'456'},
-      {name:'path: 1-5-6', args:[true,true,false], expected:'156'},
-      {name:'path: 2-5', args:[true,false,false], expected:'25'},
-      {name:'path: 3-6', args:[false,true,false], expected:'36'},
-      {name:'path: 4', args:[false,false,false], expected:4},
+      {name:'tr, tr, tr', args:[true,true,true], expected:'156'},
+      {name:'tr, fa, tr', args:[true,false,true], expected:'256'},
+      {name:'fa, tr, tr', args:[false,true,true], expected:'356'},
+      {name:'fa, fa, tr', args:[false,false,true], expected:'456'},
+      {name:'tr, tr, fa', args:[true,true,false], expected:'156'},
+      {name:'tr, ra, fa', args:[true,false,false], expected:'25'},
+      {name:'fa, tr, fa', args:[false,true,false], expected:'36'},
+      {name:'fa, fa, fa', args:[false,false,false], expected:4},
    ];
+```
+paths:
+```js
 ```
 coverlog:
 ```js
 const coverlog = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
 ```
 your notes:
+
+[TOP](#completed-examples)
+
+---
+
+
+### conditional inside loop inside conditional
+
+This code swaps variable values between a & b using a temporary holder.
+
+the snippet:
+```js
+let a = _case.args[0];                        
+let b = _case.args[1];   
+let c = _case.args[2];   
+
+if ( (a < b) || (b < c) ) {
+  while (a !== b && b !== c) {
+    if ( (b - a) > (c - b) ) {
+      a++;                        coverlog[1]++;
+    } else {
+      c--;                        coverlog[2]++;
+    };
+  };
+  actual = [a,b,c];               coverlog[3]++;
+} else {
+  actual = 'infinite loop';       coverlog[4]++;
+};
+```
+test cases:
+```js
+const test_cases = [
+      {name:'path: 1-5-6 a', args:[1,2,3], expected:[1,2,2]},
+      {name:'path: 1-5-6 b', args:[1,2,4], expected:[1,2,2]},
+      {name:'path: 1-5-6 c', args:[1,3,4], expected:[2,3,3]},
+   ];
+```
+coverlog:
+```js
+const coverlog = {1:2, 2:2, 3:2, 4:2};
+```
+your notes:
+
+[TOP](#completed-examples)
 
 ---
 
