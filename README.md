@@ -112,34 +112,7 @@ After you've written all 10 cases, paste them into your fork of this README and 
 
 ### Exercises
 
-__1.__ 
-This code swaps variable values between a & b using a temporary holder.
 
-the snippet:
-```js
-let a = _case.args[0];                        
-let b = _case.args[1];                        
-let temp = _case.args[2];              
-
-temp = b;               coverage[1]++;
-b = a;                  coverage[2]++;
-a = temp;               coverage[3]++;        
-
-actual = temp;
-```
-test cases:
-```js
-const test_cases = [
-
-    ];
-```
-coverlog:
-```js
-const coverlog = {1:0, 2:0, 3:0};
-```
-your notes:
-
----
 
 
 
