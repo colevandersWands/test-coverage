@@ -2,7 +2,6 @@
 
 each exercise in this readme comes with:
 * a snippet of code to study
-* an english description of it's behavior (inputs & outputs)
 * a couple starter test cases
 * an empty coverlog
 
