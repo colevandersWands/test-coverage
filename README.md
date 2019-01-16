@@ -79,8 +79,8 @@ After you've written all 10 cases, paste them into your fork of this README and 
 ```js
 {
   const test_cases = /* paste in test cases */;
-  const paths = [];
   const coverlog = /* paste coverlog here*/; 
+  const paths = [];
   for (let _case of test_cases) {
   
     let actual; const path = [_case.name]; { 
