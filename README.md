@@ -23,9 +23,11 @@ Your task is to write ~10 passing test cases for each snippet, all together they
 
 ## Testing "Framework"
 
-So you can focus on writing test cases, we've provided the 'framework' below to log a helpful message for every one of your failing test cases.  This message will include
+So you can focus on writing test cases, we've provided the 'framework' below to log a helpful message for every one of your failing test cases.  This message will include the name of the failing case, the expected value and the actual value.  In this exercise if a test fails it's because the test is wrong, not because the code is broken.  Remember, you're describing what the code _does_ do, not what it _should_ do.
 
-To complete the exercises paste this framework into the devtools console.  Then paste the snippet you want to study into the blank, and start filling in new test cases.  Hit enter after every new test case to check your work.  After you've written all 10 cases, paste them into your fork of this README and move on to the next. 
+To complete the exercises paste this framework into the devtools console.  Then paste the snippet you want to study into the blank, and start filling in new test cases.  Hit enter after every new test case to check your work.  You can ignore everything besides the 'test\_cases' array and the console readout, that's the point of a framework.  It takes care of the routine work so you can focus on the task at hand.
+
+After you've written all 10 cases, paste them into your fork of this README and move on to the next. 
 
 ```js
 {
@@ -33,12 +35,14 @@ To complete the exercises paste this framework into the devtools console.  Then 
       {name: '', args: [], expected: null},
       {name: '', args: [], expected: null},
     ];
+  let coverage;
   for (let _case of test_cases) {
-    const coverage = {};
+  
+    { // paste exercise snippet here
+    
+    };
 
-    paste code here
-
-    // the magic happens down here
+    // framework magic happens down here
     const expected = _case.expected;
 
     let pass;
@@ -46,6 +50,8 @@ To complete the exercises paste this framework into the devtools console.  Then 
       const _actual = JSON.stringify(actual);
       const _expected = JSON.stringify(expected);
       pass = _actual === _expected;
+    } else {
+        pass = actual === expected;
     };
 
     if (!pass) {
@@ -55,6 +61,7 @@ To complete the exercises paste this framework into the devtools console.  Then 
       console.groupEnd();
     };
   };
+  console.log('coverage: ', coverage);
 };
 ```
 
@@ -73,7 +80,17 @@ To help you with _code coverage_ each exercise snippet comes with a coverage log
 __1.__  
 the snippet:
 ```js
+coverage = {1:0,2:0,3:0};
 
+let a = _case.args[0];                        
+let b = _case.args[1];                        
+let temp = _case.args[2];              
+
+temp = b;               coverage[1]++;
+b = a;                  coverage[2]++;
+a = temp;               coverage[3]++;        
+
+const actual = temp;
 ```
 your test cases:
 ```js
