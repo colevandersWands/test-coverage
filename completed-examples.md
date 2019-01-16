@@ -106,11 +106,11 @@ if (a) {
 	if (a) {
 		actual += 1;							coverlog[2]++; path.push(2);
 	} else {
-		actual = 'impossible!';   coverlog[3]++; path.push(3);
+		actual = 'impossible!';		coverlog[3]++; path.push(3);
 	};
 } else {
 	if (a) {
-		actual = 'impossible!;    coverlog[4]++; path.push(4);
+		actual = 'impossible!;		coverlog[4]++; path.push(4);
 	} else {
 		actual += 4;							coverlog[5]++; path.push(5);
 	};
