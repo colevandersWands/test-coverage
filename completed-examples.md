@@ -2,6 +2,7 @@
 
 * [variable swap](#variable-swap)
 * [conditionals](#conditionals)
+* [unreachable conditions](#unreachable-conditions)
 * [mixed](#mixed)
 * [_super_ interesting to study](#conditional-inside-loop-inside-conditional)
 
@@ -94,37 +95,55 @@ your notes:
 
 the snippet:
 ```js
-let numbers = _case.args[1];   
+let numbers = _case.args[0];   
 
 const betweens = [];
 for (let i = 1; i < numbers.length - 1; i+=2) {
-  if (numbers[i-1] < numbers[i]) {
-    if (numbers[i] < numbers[i+1]) {
-      betweens.push(true);                    coverlog[1]++;
+  if (numbers[i-1] <= numbers[i]) {
+    if (numbers[i] <= numbers[i+1]) {
+      betweens.push(true);                    coverlog[1]++; path.push(1);
     } else {
-      betweens.push(false);                   coverlog[2]++;
+      betweens.push(false);                   coverlog[2]++; path.push(2);
     };
   } else {
-    betweens.push(false);                     coverlog[3]++;
+    betweens.push(false);                     coverlog[3]++; path.push(3);
   };
 };
-actual = true;                                coverlog[4]++;
+actual = true;                                coverlog[4]++; path.push(4);
 checkem: for (let between of betweens) {
   if (!between) {
-    !actual;                                  coverlog[5]++;
-    break checkem;                            coverlog[6]++;
+    actual = !actual;                         coverlog[5]++; path.push(5);
+    break checkem;    
   };
 };
 ```
 coverlog:
 ```js
-const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
-const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
+const before = {1:0, 2:0, 3:0, 4:0, 5:0};
 ```
-test cases:
+efficient code coverage:
 ```js
+const after = {1:14, 2:4, 3:1, 4:10, 5:4};
 const test_cases = [
-
+	 {name:'3,2,1', args:[[3,2,1]], expected:false},
+	{name:'1,4,3', args:[[1,4,3]], expected:false},
+	{name:'1,2,3', args:[[1,2,3]], expected:true},
+   ];
+```
+inefficient code coverage:
+```js
+const after = {1:1, 2:1, 3:1, 4:3, 5:2};
+const test_cases = [
+	{name:'3,2,1', args:[[3,2,1]], expected:false},
+      {name:'1, 2, 3', args:[[1,2,3]], expected:true},
+	{name:'1, 3, 3', args:[[1,3,3]], expected:true},
+	{name:'1, 4, 3', args:[[1,4,3]], expected:false},
+      {name:'1,2,3,4,5', args:[[1,2,3,4,5]], expected:true},
+	{name:'1,3,3,5,5', args:[[1,3,3,5,5]], expected:true},
+	{name:'1,4,3,4,5', args:[[1,4,3,4,5]], expected:false},
+      {name:'1,2,3,4,5,6,7', args:[[1,2,3,4,5,6,7]], expected:true},
+	{name:'1,3,3,5,5,9,9', args:[[1,3,3,5,5,9,9]], expected:true},
+	{name:'1,4,3,4,5,10,9', args:[[1,4,3,4,5,10,9]], expected:false},
    ];
 ```
 your notes:
