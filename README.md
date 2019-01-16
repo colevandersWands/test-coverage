@@ -78,8 +78,8 @@ After you've written all 10 cases, paste them into your fork of this README and 
 
 ```js
 test_coverage_framework: {
+  const coverlog = /* paste 'before' coverlog here*/; 
   const test_cases = /* paste in test cases */;
-  const coverlog = /* paste coverlog here*/; 
   const paths = [];
   for (let _case of test_cases) {
   
