@@ -3,8 +3,8 @@
 * [variable swap](#variable-swap)
 * [conditionals](#conditionals)
 * [unreachable conditions](#unreachable-conditions)
-* [mixed](#mixed)
-* [_super_ interesting to study](#conditional-inside-loop-inside-conditional)
+* [paths help understand behavior](#conditional-inside-loop-inside-conditional)
+* [efficient vs. inefficient coverage](#efficient-coverage)
 
 ---
 
@@ -91,67 +91,6 @@ your notes:
 
 
 
-### mixed
-
-the snippet:
-```js
-let numbers = _case.args[0];   
-
-const betweens = [];
-for (let i = 1; i < numbers.length - 1; i+=2) {
-  if (numbers[i-1] <= numbers[i]) {
-    if (numbers[i] <= numbers[i+1]) {
-      betweens.push(true);                    coverlog[1]++; path.push(1);
-    } else {
-      betweens.push(false);                   coverlog[2]++; path.push(2);
-    };
-  } else {
-    betweens.push(false);                     coverlog[3]++; path.push(3);
-  };
-};
-actual = true;                                coverlog[4]++; path.push(4);
-checkem: for (let between of betweens) {
-  if (!between) {
-    actual = !actual;                         coverlog[5]++; path.push(5);
-    break checkem;    
-  };
-};
-```
-coverlog:
-```js
-const before = {1:0, 2:0, 3:0, 4:0, 5:0};
-```
-efficient code coverage:
-```js
-const after = {1:14, 2:4, 3:1, 4:10, 5:4};
-const test_cases = [
-	 {name:'3,2,1', args:[[3,2,1]], expected:false},
-	{name:'1,4,3', args:[[1,4,3]], expected:false},
-	{name:'1,2,3', args:[[1,2,3]], expected:true},
-   ];
-```
-inefficient code coverage:
-```js
-const after = {1:1, 2:1, 3:1, 4:3, 5:2};
-const test_cases = [
-	{name:'3,2,1', args:[[3,2,1]], expected:false},
-      {name:'1, 2, 3', args:[[1,2,3]], expected:true},
-	{name:'1, 3, 3', args:[[1,3,3]], expected:true},
-	{name:'1, 4, 3', args:[[1,4,3]], expected:false},
-      {name:'1,2,3,4,5', args:[[1,2,3,4,5]], expected:true},
-	{name:'1,3,3,5,5', args:[[1,3,3,5,5]], expected:true},
-	{name:'1,4,3,4,5', args:[[1,4,3,4,5]], expected:false},
-      {name:'1,2,3,4,5,6,7', args:[[1,2,3,4,5,6,7]], expected:true},
-	{name:'1,3,3,5,5,9,9', args:[[1,3,3,5,5,9,9]], expected:true},
-	{name:'1,4,3,4,5,10,9', args:[[1,4,3,4,5,10,9]], expected:false},
-   ];
-```
-your notes:
-
-[TOP](#completed-examples)
-
----
-
 
 ### conditional inside loop inside conditional
 
@@ -199,6 +138,71 @@ your notes:
 
 ---
 
+
+### efficient coverage
+
+Any good set of test cases will hit every line of testable code, but some test cases get the job done more evenly & efficiently than others.  The efficient cases below cover every line as equally as possible with only 3 cases. The inefficient cases still cover all lines of code but hit some far more than others, and have way more tests than necessary.
+
+Complete & efficient code coverage aren't the only important things to consider when writing tests, but they are some one of the easiest concepts in testing to grasp.  Later in this course we will cover other important, but trickier, questions to ask about test quality.
+
+the snippet:
+```js
+let numbers = _case.args[0];   
+
+const betweens = [];
+for (let i = 1; i < numbers.length - 1; i+=2) {
+  if (numbers[i-1] <= numbers[i]) {
+    if (numbers[i] <= numbers[i+1]) {
+      betweens.push(true);                    coverlog[1]++; path.push(1);
+    } else {
+      betweens.push(false);                   coverlog[2]++; path.push(2);
+    };
+  } else {
+    betweens.push(false);                     coverlog[3]++; path.push(3);
+  };
+};
+actual = true;                                coverlog[4]++; path.push(4);
+checkem: for (let between of betweens) {
+  if (!between) {
+    actual = !actual;                         coverlog[5]++; path.push(5);
+    break checkem;    
+  };
+};
+```
+coverlog:
+```js
+const before = {1:0, 2:0, 3:0, 4:0, 5:0};
+const efficient = {1:1, 2:1, 3:1, 4:3, 5:2};
+const inefficient = {1:14, 2:4, 3:1, 4:10, 5:4};
+```
+efficient code coverage:
+```js
+const test_cases = [
+		{name:'3,2,1', args:[[3,2,1]], expected:false},
+		{name:'1,4,3', args:[[1,4,3]], expected:false},
+		{name:'1,2,3', args:[[1,2,3]], expected:true},
+  ];
+```
+inefficient code coverage:
+```js
+const test_cases = [
+		{name:'3,2,1', args:[[3,2,1]], expected:false},
+		{name:'1, 2, 3', args:[[1,2,3]], expected:true},
+		{name:'1, 3, 3', args:[[1,3,3]], expected:true},
+		{name:'1, 4, 3', args:[[1,4,3]], expected:false},
+		{name:'1,2,3,4,5', args:[[1,2,3,4,5]], expected:true},
+		{name:'1,3,3,5,5', args:[[1,3,3,5,5]], expected:true},
+		{name:'1,4,3,4,5', args:[[1,4,3,4,5]], expected:false},
+		{name:'1,2,3,4,5,6,7', args:[[1,2,3,4,5,6,7]], expected:true},
+		{name:'1,3,3,5,5,9,9', args:[[1,3,3,5,5,9,9]], expected:true},
+		{name:'1,4,3,4,5,10,9', args:[[1,4,3,4,5,10,9]], expected:false},
+	];
+```
+your notes:
+
+[TOP](#completed-examples)
+
+---
 
 ___
 ___
