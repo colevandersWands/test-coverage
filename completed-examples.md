@@ -2,7 +2,7 @@
 
 * [variable swap](#variable-swap)
 * [conditionals](#conditionals)
-* [conditional in a loop](#conditional-in-a-loop)
+* [mixed](#mixed)
 * [_super_ interesting to study](#conditional-inside-loop-inside-conditional)
 
 ---
@@ -90,15 +90,31 @@ your notes:
 
 
 
-### conditional in a loop
+### mixed
 
 the snippet:
 ```js
-let a = _case.args[0];                        
-let b = _case.args[1];   
-let c = _case.args[2];   
+let numbers = _case.args[1];   
 
-
+const betweens = [];
+for (let i = 1; i < numbers.length - 1; i+=2) {
+  if (numbers[i-1] < numbers[i]) {
+    if (numbers[i] < numbers[i+1]) {
+      betweens.push(true);                    coverlog[1]++;
+    } else {
+      betweens.push(false);                   coverlog[2]++;
+    };
+  } else {
+    betweens.push(false);                     coverlog[3]++;
+  };
+};
+actual = true;                                coverlog[4]++;
+checkem: for (let between of betweens) {
+  if (!between) {
+    !actual;                                  coverlog[5]++;
+    break checkem;                            coverlog[6]++;
+  };
+};
 ```
 coverlog:
 ```js
