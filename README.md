@@ -77,7 +77,7 @@ To complete the exercises paste this framework into the devtools console.  Then 
 After you've written all 10 cases, paste them into your fork of this README and move on to the next. 
 
 ```js
-{
+test_coverage_framework: {
   const test_cases = /* paste in test cases */;
   const coverlog = /* paste coverlog here*/; 
   const paths = [];
