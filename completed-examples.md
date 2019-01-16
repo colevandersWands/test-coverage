@@ -101,19 +101,19 @@ the snippet:
 ```js
 let a = _case.args[0];    
 
-actual = 0;										coverlog[1]++; path.push(1);
+actual = 0;                   coverlog[1]++; path.push(1);
 if (a) {
-	if (a) {
-		actual += 1;							coverlog[2]++; path.push(2);
-	} else {
-		actual = 'impossible!';		coverlog[3]++; path.push(3);
-	};
+  if (a) {
+    actual += 1;              coverlog[2]++; path.push(2);
+  } else {
+    actual = 'impossible!';   coverlog[3]++; path.push(3);
+  };
 } else {
-	if (a) {
-		actual = 'impossible!;		coverlog[4]++; path.push(4);
-	} else {
-		actual += 4;							coverlog[5]++; path.push(5);
-	};
+  if (a) {
+    actual = 'impossible!';   coverlog[4]++; path.push(4);
+  } else {
+    actual += 4;              coverlog[5]++; path.push(5);
+  };
 };
 ```
 coverlog:
@@ -196,9 +196,9 @@ let a = _case.args[0];
 let b = _case.args[1];    
 
 if (a && b) {
-	actual = 1;						coverlog[1]++; path.push(1);
+  actual = 1;           coverlog[1]++; path.push(1);
 } else {
-	actual = 2;						coverlog[2]++; path.push(2);
+  actual = 2;           coverlog[2]++; path.push(2);
 };
 ```
 coverlog:
@@ -264,25 +264,25 @@ const inefficient = {1:14, 2:4, 3:1, 4:10, 5:4};
 efficient code coverage:
 ```js
 const test_cases = [
-		{name:'3,2,1', args:[[3,2,1]], expected:false},
-		{name:'1,4,3', args:[[1,4,3]], expected:false},
-		{name:'1,2,3', args:[[1,2,3]], expected:true},
+    {name:'3,2,1', args:[[3,2,1]], expected:false},
+    {name:'1,4,3', args:[[1,4,3]], expected:false},
+    {name:'1,2,3', args:[[1,2,3]], expected:true},
   ];
 ```
 inefficient code coverage:
 ```js
 const test_cases = [
-		{name:'3,2,1', args:[[3,2,1]], expected:false},
-		{name:'1, 2, 3', args:[[1,2,3]], expected:true},
-		{name:'1, 3, 3', args:[[1,3,3]], expected:true},
-		{name:'1, 4, 3', args:[[1,4,3]], expected:false},
-		{name:'1,2,3,4,5', args:[[1,2,3,4,5]], expected:true},
-		{name:'1,3,3,5,5', args:[[1,3,3,5,5]], expected:true},
-		{name:'1,4,3,4,5', args:[[1,4,3,4,5]], expected:false},
-		{name:'1,2,3,4,5,6,7', args:[[1,2,3,4,5,6,7]], expected:true},
-		{name:'1,3,3,5,5,9,9', args:[[1,3,3,5,5,9,9]], expected:true},
-		{name:'1,4,3,4,5,10,9', args:[[1,4,3,4,5,10,9]], expected:false},
-	];
+    {name:'3,2,1', args:[[3,2,1]], expected:false},
+    {name:'1, 2, 3', args:[[1,2,3]], expected:true},
+    {name:'1, 3, 3', args:[[1,3,3]], expected:true},
+    {name:'1, 4, 3', args:[[1,4,3]], expected:false},
+    {name:'1,2,3,4,5', args:[[1,2,3,4,5]], expected:true},
+    {name:'1,3,3,5,5', args:[[1,3,3,5,5]], expected:true},
+    {name:'1,4,3,4,5', args:[[1,4,3,4,5]], expected:false},
+    {name:'1,2,3,4,5,6,7', args:[[1,2,3,4,5,6,7]], expected:true},
+    {name:'1,3,3,5,5,9,9', args:[[1,3,3,5,5,9,9]], expected:true},
+    {name:'1,4,3,4,5,10,9', args:[[1,4,3,4,5,10,9]], expected:false},
+  ];
 ```
 your notes:
 
