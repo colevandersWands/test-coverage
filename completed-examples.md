@@ -108,7 +108,7 @@ if (a) {
 	} else {
 		actual = 'impossible!';   coverlog[3]++; path.push(3);
 	};
-else {
+} else {
 	if (a) {
 		actual = 'impossible!;    coverlog[4]++; path.push(4);
 	} else {
