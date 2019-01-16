@@ -1,4 +1,4 @@
-# Test Cases
+# Test Coverage
 
 each exercise in this readme comes with:
 * a snippet of code to study
@@ -34,7 +34,7 @@ for each snippet your task is to write:
 * working in devtools console
 * ...
 
-[TOP](#test-cases)
+[TOP](#test-coverage)
 
 ---
 
@@ -51,7 +51,7 @@ const test_cases = [
   ];
 ```
 
-[TOP](#test-cases)
+[TOP](#test-coverage)
 
 ---
 
@@ -64,7 +64,7 @@ To help you with _code coverage_ each exercise snippet comes with a coverage log
 This will be done using an object called 'coverlog'.  Each exercise comes with an 
 
 
-[TOP](#test-cases)
+[TOP](#test-coverage)
 
 ---
 
@@ -106,7 +106,7 @@ After you've written all 10 cases, paste them into your fork of this README and 
   console.log('coverlog: ', coverlog);
 };
 ```
-[TOP](#test-cases)
+[TOP](#test-coverage)
 
 ---
 
