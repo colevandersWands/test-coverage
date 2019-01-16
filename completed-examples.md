@@ -3,8 +3,7 @@
 * [variable swap](#variable-swap)
 * [conditionals](#conditionals)
 * [conditional in a loop](#conditional-in-a-loop)
-* [loop in a conditional](#loop-in-a-conditional)
-* [conditional inside loop inside conditional](#conditional-inside-loop-inside-conditional)
+* [_super_ interesting inspect](#conditional-inside-loop-inside-conditional)
 
 ---
 
@@ -31,7 +30,8 @@ const test_cases = [
 ```
 coverlog:
 ```js
-const coverlog = {1:2, 2:2, 3:2};
+const before = {1:0, 2:0, 3:0};
+const after = {1:2, 2:2, 3:2};
 ```
 your notes:
 
@@ -49,19 +49,19 @@ let b = _case.args[1];
 let c = _case.args[2];   
 
 if (a && b) {
-  actual = 1;                   coverlog[1]++;
+  actual = 1;                   coverlog[1]++;  path.push(1);
 } else if(a && !b) {
-  actual = 2;                   coverlog[2]++;
+  actual = 2;                   coverlog[2]++;  path.push(2);
 } else if(!a && b) {
-  actual = 3;                   coverlog[3]++;
+  actual = 3;                   coverlog[3]++;  path.push(3);
 } else if(!a && !b) {
-  actual = 4;                   coverlog[4]++;    
+  actual = 4;                   coverlog[4]++;  path.push(4);    
 };
 if (a || c) {
-  actual = actual + '' + 5;     coverlog[5]++;
+  actual = actual + '' + 5;     coverlog[5]++;  path.push(5);
 };
 if (b || c) {
-  actual = actual + '' + 6;     coverlog[6]++;
+  actual = actual + '' + 6;     coverlog[6]++;  path.push(6);
 };
 ```
 test cases:
@@ -77,12 +77,39 @@ const test_cases = [
       {name:'fa, fa, fa', args:[false,false,false], expected:4},
    ];
 ```
-paths:
+coverlog:
 ```js
+const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
+```
+your notes:
+
+[TOP](#completed-examples)
+
+---
+
+
+
+### conditional in a loop
+
+the snippet:
+```js
+let a = _case.args[0];                        
+let b = _case.args[1];   
+let c = _case.args[2];   
+
+
+```
+test cases:
+```js
+const test_cases = [
+
+   ];
 ```
 coverlog:
 ```js
-const coverlog = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
+const before = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0};
+const after = {1:2, 2:2, 3:2, 4:2, 5:6, 6:6};
 ```
 your notes:
 
@@ -104,27 +131,32 @@ let c = _case.args[2];
 if ( (a < b) || (b < c) ) {
   while (a !== b && b !== c) {
     if ( (b - a) > (c - b) ) {
-      a++;                        coverlog[1]++;
+      a++;                        coverlog[1]++; path.push(1);
     } else {
-      c--;                        coverlog[2]++;
+      c--;                        coverlog[2]++; path.push(2);
     };
   };
-  actual = [a,b,c];               coverlog[3]++;
+  actual = [a,b,c];               coverlog[3]++; path.push(3);
 } else {
-  actual = 'infinite loop';       coverlog[4]++;
+  actual = 'infinite loop';       coverlog[4]++; path.push(4);
 };
 ```
 test cases:
 ```js
 const test_cases = [
-      {name:'path: 1-5-6 a', args:[1,2,3], expected:[1,2,2]},
-      {name:'path: 1-5-6 b', args:[1,2,4], expected:[1,2,2]},
-      {name:'path: 1-5-6 c', args:[1,3,4], expected:[2,3,3]},
+      {name:'1, 2, 3', args:[1,2,3], expected:[1,2,2]},
+      {name:'1, 2, 4', args:[1,2,4], expected:[1,2,2]},
+      {name:'1, 3, 4', args:[1,3,4], expected:[2,3,3]},
+      {name:'1, 4, 4', args:[1,4,4], expected:[1,4,4]},     
+      {name:'1, 8, 4', args:[1,8,4], expected:[8,8,4]},   
+      {name:'10, 8, 4', args:[10,8,4], expected:'infinite loop'},
+      {name:'1, 8, 14', args:[1,8,14], expected:[7,8,8]},   
    ];
 ```
 coverlog:
 ```js
-const coverlog = {1:2, 2:2, 3:2, 4:2};
+const before = {1:0, 2:0, 3:0, 4:0};
+const after = {1:14, 2:10, 3:6, 4:1};
 ```
 your notes:
 
