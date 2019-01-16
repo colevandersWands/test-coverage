@@ -16,22 +16,22 @@ let a = _case.args[0];
 let b = _case.args[1];                        
 let temp = _case.args[2];              
 
-temp = b;               coverlog[1]++;
-b = a;                  coverlog[2]++;
-a = temp;               coverlog[3]++;        
+temp = b;               coverlog[1]++; path.push(1);
+b = a;                  coverlog[2]++; path.push(2);
+a = temp;               coverlog[3]++; path.push(3);       
 
 actual = temp;
 ```
 test cases:
 ```js
 const test_cases = [
-      {name:'path: 1-2-3', args:[1,2,3], expected: 2},
-      {name:'path: 1-2-3', args:[3,2,1], expected: 2},
+      {name:'1, 2, 3', args:[1,2,3], expected: 2},
+      {name:'3, 2, 1', args:[3,2,1], expected: 2},
     ];
 ```
 coverlog:
 ```js
-const coverlog = {1:1, 2:1, 3:1};
+const coverlog = {1:2, 2:2, 3:2};
 ```
 your notes:
 
