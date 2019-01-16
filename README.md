@@ -78,13 +78,14 @@ After you've written all 10 cases, paste them into your fork of this README and 
 
 ```js
 {
-  const coverlog = /* paste coverlog here*/; 
   const test_cases = /* paste in test cases */;
+  const paths = [];
+  const coverlog = /* paste coverlog here*/; 
   for (let _case of test_cases) {
   
-    let actual; { 
+    let actual; const path = [_case.name]; { 
         // paste challenge snippet here
-    };
+    };   paths.push(path);
 
     // framework magic happens down here
     const expected = _case.expected;
@@ -103,6 +104,7 @@ After you've written all 10 cases, paste them into your fork of this README and 
       console.groupEnd();
     };
   };
+  console.log('paths: ', paths);
   console.log('coverlog: ', coverlog);
 };
 ```
