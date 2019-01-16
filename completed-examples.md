@@ -1,6 +1,6 @@
 # Completed Examples
 
-* [variable swap](#variable-swap)
+* [no control flow](#no-control-flow)
 * [conditionals](#conditionals)
 * [unreachable conditions](#unreachable-conditions)
 * [paths help understand behavior](#conditional-inside-loop-inside-conditional)
@@ -10,7 +10,7 @@
 
 ---
 
-### variable swap
+### no control flow
 
 the snippet:
 ```js
