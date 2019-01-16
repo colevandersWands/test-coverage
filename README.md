@@ -85,9 +85,10 @@ After you've written all 10 cases, paste them into your fork of this README and 
   
     let actual; const path = [_case.name]; { 
         // paste challenge snippet here
-    };   paths.push(path);
+    };
 
     // framework magic happens down here
+    paths.push(path);
     const expected = _case.expected;
     let pass;
     if (typeof expected === 'object') {
