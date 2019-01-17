@@ -39,6 +39,7 @@ for each snippet your task is to write:
 
 Writing passing test cases for existing code is not too hard, you can pretty much do it by trial and error. Writing good test cases is hard.  We will cover this in detail later on, but for now there is one important question to ask:
 > Do my tests test all of the code?  
+
 To help you understand your _test coverage_ each exercise snippet comes with a coverage log & a path log.  The 'coverlog' automatically tracks how many times each line of code is executed, the 'paths' log will track the lines of code each test case reaches in order.  Together these readouts have all the information (along with the source code!) to figure out what test cases are missing.
 
 
