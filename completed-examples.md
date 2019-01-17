@@ -156,7 +156,7 @@ if ( (a < b) || (b < c) ) {
   };
   actual = [a,b,c];               coverlog[3]++; path.push(3);
 } else {
-  actual = 'infinite loop';       coverlog[4]++; path.push(4);
+  actual = 'infinite loop?';       coverlog[4]++; path.push(4);
 };
 ```
 coverlog:
@@ -172,7 +172,7 @@ const test_cases = [
       {name:'1, 3, 4', args:[1,3,4], expected:[2,3,3]},
       {name:'1, 4, 4', args:[1,4,4], expected:[1,4,4]},     
       {name:'1, 8, 4', args:[1,8,4], expected:[8,8,4]},   
-      {name:'10, 8, 4', args:[10,8,4], expected:'infinite loop'},
+      {name:'10, 8, 4', args:[10,8,4], expected:'infinite loop?'},
       {name:'1, 8, 14', args:[1,8,14], expected:[7,8,8]},   
    ];
 ```
